@@ -1,14 +1,13 @@
 import{ renderOrderSummary } from "../scripts/checkout/orderSummary.js";
-import { addToCart, loadFromStorage } from "../data/cart.js";
+import { loadFromStorage } from "../data/cart";
 
-describe('renderordersummary', ()=>{
+describe('renderodersummary',()=>{
+  it('displays cart',()=>{
 
-  it('displays product in cart',()=>{
-
-    document.querySelector(".js-order-summary-test-container").innerHTML =
+    document.querySelector('.js-order-summary-test-container').innerHTML =
      `<div class="js-order-summary"></div>`;
 
-     spyOn(localStorage,'getItem').and.callFake(()=>{
+    spyOn(localStorage,'getItem').and.callFake(()=>{
       return JSON.stringify([{
         productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
         quantity:1,
@@ -21,9 +20,11 @@ describe('renderordersummary', ()=>{
       }]);
     });
 
-     loadFromStorage();
-     renderOrderSummary();
+    loadFromStorage();
+    renderOrderSummary();
 
-     expect(document.querySelectorAll('.js-test-item-container').length).toEqual(2);
+    expect(document.querySelectorAll('.js-test-item-container').length).toEqual(2);
+
   });
 });
+
