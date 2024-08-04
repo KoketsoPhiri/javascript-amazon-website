@@ -1,6 +1,3 @@
-
-
-
 class Cart{
   cartItems;
   localStorageKey;
@@ -82,13 +79,13 @@ class Cart{
     matchingItem.deliveryOptionId = deliveryOptionId;
   }
 
- 
+  
 
 }
 
-const cart = new Cart('cart');
-
-const businessCart = new Cart('businss-cart');
+export const cart = new Cart('cart');
 
 console.log(cart);
-console.log(businessCart);
+
+
+

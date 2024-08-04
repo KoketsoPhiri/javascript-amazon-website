@@ -1,5 +1,7 @@
-import { cart } from "../../data/cart.js";
+/*import { cart } from "../../data/cart.js";*/
+import { cart } from "../../data/cart-class.js";
 import { getDeliveryOption } from "../../data/deliveryoptions.js";
+import { addOrder } from "../../data/orders.js";
 import { getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 
@@ -53,11 +55,15 @@ export function renderPaymentSummary(){
       <div class="payment-summary-money">${formatCurrency(totalPriceCents)}</div>
     </div>
 
-    <button class="place-order-button button-primary">
+    <button class="place-order-button button-primary js-place-order">
       Place your order
     </button>
   `;
 
   document.querySelector('.js-payment-summary').innerHTML = paymentSummaryHTML;
+
+
+    
+  
 }
 

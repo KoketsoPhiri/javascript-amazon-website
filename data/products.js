@@ -27,6 +27,9 @@ class Products{
     return `${formatCurrency(this.priceCents)}`;
   }
 
+  extraInfoHTML(){
+    return '';
+  }
 }
 
 class Clothing extends Products{
@@ -40,7 +43,14 @@ class Clothing extends Products{
     this.sizeChartLink = productDetails.sizeChartLink;
     
   }
+
+  extraInfoHTML(){
+
+    return `<a href="${this.sizeChartLink}" target="_blank">Size Chart</a>`;
+  }
 }
+
+
 
 const clothing = new Clothing({
   id: "83d4ca15-0f35-48f5-b7a3-1ea210004f2e",
@@ -61,7 +71,8 @@ const clothing = new Clothing({
 });
 console.log(clothing.getPriceCents());
 
-export const products = [
+
+/*export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
@@ -722,7 +733,43 @@ export const products = [
   }
 ].map((productDetails)=>{
   return new Products(productDetails);
-});
+});*/
+
+export let products = [];
+export function loadProducts(fun){
+  const xhr = new XMLHttpRequest();
+  xhr.addEventListener('load',()=>{
+    products = JSON.parse(xhr.response).map((productDetails)=>{
+      if(productDetails.type === 'clothing'){
+        return new Clothing(productDetails);
+      }
+      return new Products(productDetails);
+    });
+    fun();
+  });
+  
+  xhr.open('GET','https://supersimplebackend.dev/products');
+  xhr.send();
+}
+loadProducts();
+
+/*export function loadProductsFetch(fun){
+  fetch('https://supersimplebackend.dev/products')
+  .then((response)=>{
+    return response.json();
+  })
+  .then((productData)=>{
+    products = productData.map((productDetails)=>{
+      if(productDetails.type === 'clothing'){
+        return new Clothing(productDetails);
+      }
+      return new Products(productDetails);
+    });
+    fun();
+  });
+}
+loadProductsFetch();*/
+
 
 export function getProduct(productId){
 
