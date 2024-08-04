@@ -735,7 +735,7 @@ console.log(clothing.getPriceCents());
   return new Products(productDetails);
 });*/
 
-export let products = [];
+/*export let products = [];
 export function loadProducts(fun){
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load',()=>{
@@ -751,24 +751,23 @@ export function loadProducts(fun){
   xhr.open('GET','https://supersimplebackend.dev/products');
   xhr.send();
 }
-loadProducts();
+loadProducts();*/
 
-/*export function loadProductsFetch(fun){
+export let products = [];
+export function loadProductFetch(){
   fetch('https://supersimplebackend.dev/products')
   .then((response)=>{
     return response.json();
   })
   .then((productData)=>{
-    products = productData.map((productDetails)=>{
+    products = JSON.parse(productData).map((productDetails)=>{
       if(productDetails.type === 'clothing'){
         return new Clothing(productDetails);
       }
       return new Products(productDetails);
     });
-    fun();
   });
 }
-loadProductsFetch();*/
 
 
 export function getProduct(productId){
