@@ -1,7 +1,7 @@
 import{ renderOrderSummary } from "../scripts/checkout/orderSummary.js";
 import { loadFromStorage } from "../data/cart.js";
 import { renderPaymentSummary } from "../scripts/checkout/paymentSummary.js";
-import { loadProducts } from "../data/products.js";
+import { loadProductFetch } from "../data/products.js";
 
 describe('test suit : render order summary',()=>{
 
@@ -9,7 +9,7 @@ describe('test suit : render order summary',()=>{
   const product2 = "15b6fc6f-327a-4ec4-896f-486349e85a3d";
 
   beforeAll((done)=>{
-    loadProducts(()=>{
+    loadProductFetch(()=>{
       done();
     });
   });

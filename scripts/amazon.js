@@ -1,10 +1,10 @@
-import {loadProducts, products} from "../data/products.js";
+import {loadProductFetch, products} from "../data/products.js";
 import {/*cart*/addToCart} from "../data/cart.js";
 import { cart } from "../data/cart-class.js";
 
-loadProducts(amazongGrid);
+loadProductFetch(amazonGrid);
 
-function amazongGrid(){
+export function amazonGrid(){
   function cartQuantity(){
     
     let cartQuantityHTML= 0;
@@ -88,4 +88,4 @@ function amazongGrid(){
     });
   });
 }
-amazongGrid();
+

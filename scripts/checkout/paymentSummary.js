@@ -1,7 +1,7 @@
 /*import { cart } from "../../data/cart.js";*/
 import { cart } from "../../data/cart-class.js";
 import { getDeliveryOption } from "../../data/deliveryoptions.js";
-import { addOrder } from "../../data/orders.js";
+//import { addOrder } from "../../data/orders.js";
 import { getProduct } from "../../data/products.js";
 import { formatCurrency } from "../utils/money.js";
 
@@ -13,7 +13,7 @@ export function renderPaymentSummary(){
     const productId = cartItem.productId;
 
     const product = getProduct(cartItem.productId);
-    productPriceCents += product.priceCents + cartItem.quantity;
+    productPriceCents += product.priceCents * cartItem.quantity;
 
     const deliveryOption = getDeliveryOption(cartItem.deliveryOptionId);
     shippingPriceCents += deliveryOption.priceCents;

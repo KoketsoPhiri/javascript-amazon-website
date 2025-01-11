@@ -69,7 +69,7 @@ const clothing = new Clothing({
   type: "clothing",
   sizeChartLink: "images/clothing-size-chart.png"
 });
-console.log(clothing.getPriceCents());
+
 
 
 /*export const products = [
@@ -755,19 +755,26 @@ loadProducts();*/
 
 export let products = [];
 export function loadProductFetch(){
-  fetch('https://supersimplebackend.dev/products')
+
+  const promise = fetch('https://supersimplebackend.dev/products')
   .then((response)=>{
     return response.json();
   })
   .then((productData)=>{
-    products = JSON.parse(productData).map((productDetails)=>{
+    products = productData.map((productDetails)=>{
       if(productDetails.type === 'clothing'){
         return new Clothing(productDetails);
       }
       return new Products(productDetails);
+      
     });
+    
   });
+ 
+  return promise;
 }
+loadProductFetch();
+
 
 
 export function getProduct(productId){
